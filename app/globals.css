@@ -178,14 +178,14 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-90%);
   }
 }
 
 /* Updated scrolling animation to go left-to-right with faster speed */
 @keyframes scroll-left-to-right {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(-90%);
   }
   100% {
     transform: translateX(0);

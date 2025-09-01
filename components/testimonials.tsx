@@ -72,7 +72,6 @@ export default function Testimonials() {
     return () => clearInterval(interval)
   }, [])
 
-  // Helper to get correct index for circular rotation
   const getIndex = (index: number) => {
     return (index + testimonials.length) % testimonials.length
   }
@@ -88,7 +87,7 @@ export default function Testimonials() {
             <div
               key={i}
               className={`
-                w-1/3 flex-shrink-0 transition-all duration-700 ease-in-out transform-gpu
+                w-full sm:w-2/3 md:w-1/2 lg:w-1/3 flex-shrink-0 transition-all duration-700 ease-in-out transform-gpu
                 ${isCenter ? "scale-100 opacity-100 z-10 translate-x-0 rotate-y-0" : "scale-90 opacity-50 z-0"}
                 ${position === 0 ? "-translate-x-6 -rotate-y-10" : ""}
                 ${position === 2 ? "translate-x-6 rotate-y-10" : ""}
@@ -131,23 +130,22 @@ export default function Testimonials() {
         })}
       </div>
 
-    {/* Controls */}
-<button
-  onClick={prevSlide}
-  className="absolute -left-12 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-all duration-200 shadow-md"
-  aria-label="Previous testimonial"
->
-  <ChevronLeft className="w-6 h-6 text-foreground" />
-</button>
+      {/* Controls */}
+      <button
+        onClick={prevSlide}
+        className="absolute -left-12 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-all duration-200 shadow-md"
+        aria-label="Previous testimonial"
+      >
+        <ChevronLeft className="w-6 h-6 text-foreground" />
+      </button>
 
-<button
-  onClick={nextSlide}
-  className="absolute -right-12 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-all duration-200 shadow-md" 
-  aria-label="Next testimonial"
->
-  <ChevronRight className="w-6 h-6 text-foreground" />
-</button>
-
+      <button
+        onClick={nextSlide}
+        className="absolute -right-12 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-all duration-200 shadow-md"
+        aria-label="Next testimonial"
+      >
+        <ChevronRight className="w-6 h-6 text-foreground" />
+      </button>
     </div>
   )
 }
