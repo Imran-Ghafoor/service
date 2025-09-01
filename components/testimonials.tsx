@@ -83,12 +83,17 @@ export default function Testimonials() {
           const testimonial = testimonials[getIndex(i)]
           const isCenter = position === 1
 
+          // Hide side cards on mobile (sm breakpoint and below)
+          if (!isCenter && typeof window !== "undefined" && window.innerWidth < 640) {
+            return null
+          }
+
           return (
             <div
               key={i}
               className={`
                 w-full sm:w-2/3 md:w-1/2 lg:w-1/3 flex-shrink-0 transition-all duration-700 ease-in-out transform-gpu
-                ${isCenter ? "scale-100 opacity-100 z-10 translate-x-0 rotate-y-0" : "scale-90 opacity-50 z-0"}
+                ${isCenter ? "scale-100 opacity-100 z-10 translate-x-0 rotate-y-0" : "hidden sm:block scale-90 opacity-50 z-0"}
                 ${position === 0 ? "-translate-x-6 -rotate-y-10" : ""}
                 ${position === 2 ? "translate-x-6 rotate-y-10" : ""}
               `}
