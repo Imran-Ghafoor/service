@@ -96,7 +96,7 @@ export default function Footer() {
               <div className="flex items-center justify-center space-x-3">
                 <Mail className="w-6 h-6 text-yellow-400" />
                 <span className="text-2xl font-bold bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
-                  contact@techflow.com
+                  contact@tdx.com
                 </span>
               </div>
 

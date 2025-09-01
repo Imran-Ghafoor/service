@@ -16,50 +16,46 @@ const technologies = [
 ]
 
 export default function TechRotator() {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [offset, setOffset] = useState(0)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % technologies.length)
-    }, 2000) // Rotate every 2 seconds
-
-    return () => clearInterval(interval)
+    let frame: number
+    const animate = () => {
+      setOffset((prev) => (prev - 1) % (technologies.length * 200)) // 200px per item width
+      frame = requestAnimationFrame(animate)
+    }
+    frame = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(frame)
   }, [])
 
-  const getVisibleTechs = () => {
-    const visible = []
-    for (let i = 0; i < 5; i++) {
-      const index = (currentIndex + i) % technologies.length
-      visible.push(technologies[index])
-    }
-    return visible
-  }
-
   return (
-    <div className="flex justify-center items-center space-x-8 overflow-hidden">
-      {getVisibleTechs().map((tech, index) => (
-        <div
-          key={`${tech.name}-${currentIndex}-${index}`}
-          className={`transition-all duration-500 transform ${
-            index === 2
-              ? "scale-110 opacity-100"
-              : index === 1 || index === 3
-                ? "scale-100 opacity-80"
-                : "scale-90 opacity-60"
-          }`}
-        >
-          <div className="flex flex-col items-center space-y-2">
-            <div className="w-16 h-16 bg-background rounded-lg shadow-md flex items-center justify-center hover:shadow-lg transition-shadow duration-300 border border-border">
+    <div className="relative w-full overflow-hidden h-[200px] flex items-center">
+      <div
+        className="flex"
+        style={{
+          transform: `translateX(${offset}px)`,
+          transition: "transform 0.05s linear",
+        }}
+      >
+        {[...technologies, ...technologies].map((tech, idx) => (
+          <div
+            key={idx}
+            className="flex flex-col items-center mx-10"
+            style={{ minWidth: "100px" }}
+          >
+            <div className="w-24 h-24 bg-background rounded-2xl shadow-md flex items-center justify-center border border-border">
               <img
                 src={tech.logo || "/placeholder.svg"}
                 alt={`${tech.name} logo`}
-                className="w-10 h-10 object-contain"
+                className="w-16 h-16 object-contain"
               />
             </div>
-            <span className="text-sm font-medium text-muted-foreground">{tech.name}</span>
+            <span className="text-lg font-semibold text-muted-foreground mt-3">
+              {tech.name}
+            </span>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }

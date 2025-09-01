@@ -470,7 +470,7 @@ export default function ConsultationPage() {
                     ? formData.services.map((id) => services.find((s) => s.id === id)?.name).join(", ")
                     : "None selected"}
                 </div>
-                <div>
+                <div> 
                   <strong>Timeline:</strong> {formData.timeline || "Not specified"}
                 </div>
                 <div>

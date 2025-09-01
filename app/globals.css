@@ -3,6 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
 :root {
   /* Updated to metallic grey background with white/golden text theme */
   --background: linear-gradient(135deg, #2c2c2c 0%, #3a3a3a 50%, #2c2c2c 100%);
@@ -11,20 +12,20 @@
   --card-foreground: #ffffff;
   --popover: #3a3a3a;
   --popover-foreground: #ffffff;
-  --primary: #d4af37;
+  --primary: #d3af37;
   --primary-foreground: #ffffff;
   --secondary: #4a4a4a;
   --secondary-foreground: #ffffff;
   --muted: #4a4a4a;
   --muted-foreground: #e5e7eb;
-  --accent: #d4af37;
+  --accent: #d3af37;
   --accent-foreground: #ffffff;
   --destructive: #ff4d4d;
   --destructive-foreground: #ffffff;
   --border: #5a5a5a;
   --input: #4a4a4a;
   --ring: rgba(212, 175, 55, 0.5);
-  --chart-1: #d4af37;
+  --chart-1: #d3af37;
   --chart-2: #f0e68c;
   --chart-3: #ffffff;
   --chart-4: #4a4a4a;
@@ -34,7 +35,7 @@
   --sidebar-foreground: #ffffff;
   --sidebar-primary: #ffffff;
   --sidebar-primary-foreground: #2c2c2c;
-  --sidebar-accent: #d4af37;
+  --sidebar-accent: #d3af37;
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #4a4a4a;
   --sidebar-ring: rgba(212, 175, 55, 0.5);
@@ -48,20 +49,20 @@
   --card-foreground: #ffffff;
   --popover: #2a2a2a;
   --popover-foreground: #ffffff;
-  --primary: #d4af37;
+  --primary: #d3af37;
   --primary-foreground: #1a1a1a;
   --secondary: #3a3a3a;
   --secondary-foreground: #ffffff;
   --muted: #3a3a3a;
   --muted-foreground: #e5e7eb;
-  --accent: #d4af37;
+  --accent: #d3af37;
   --accent-foreground: #1a1a1a;
   --destructive: #ff4d4d;
   --destructive-foreground: #ffffff;
   --border: #4a4a4a;
   --input: #3a3a3a;
   --ring: rgba(212, 175, 55, 0.5);
-  --chart-1: #d4af37;
+  --chart-1: #d3af37;
   --chart-2: #f0e68c;
   --chart-3: #ffffff;
   --chart-4: #2a2a2a;
@@ -70,7 +71,7 @@
   --sidebar-foreground: #ffffff;
   --sidebar-primary: #1a1a1a;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #d4af37;
+  --sidebar-accent: #d3af37;
   --sidebar-accent-foreground: #1a1a1a;
   --sidebar-border: #4a4a4a;
   --sidebar-ring: rgba(212, 175, 55, 0.5);
@@ -123,7 +124,7 @@
   }
   body {
     /* Updated body to use metallic grey gradient background */
-    background: linear-gradient(135deg, #2c2c2c 0%, #3a3a3a 50%, #2c2c2c 100%);
+    background: linear-gradient(135deg, #141414 0%, #1b1b1b 50%, #1c1c1c 100%);
     @apply text-foreground;
     min-height: 100vh;
   }
@@ -261,6 +262,13 @@
 .animate-scroll-left-to-right {
   animation: scroll-left-to-right 15s linear infinite;
 }
+.pause-animation {
+  animation-play-state: paused !important;
+}
+.hover-golden:hover {
+  box-shadow: 0 4px 15px #d3af37 !important;
+}
+
 
 .animate-fade-in-up {
   animation: fade-in-up 0.6s ease-out;

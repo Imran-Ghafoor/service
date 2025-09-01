@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { Card, CardContent } from "@/components/ui/card"
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react"
 import { useState, useEffect } from "react"
@@ -50,7 +49,8 @@ const testimonials = [
   {
     name: "Robert Martinez",
     role: "VP Technology, RetailMax",
-    content: "Their DevOps solutions streamlined our deployment process. We now deploy 10x faster with zero downtime.",
+    content:
+      "Their DevOps solutions streamlined our deployment process. We now deploy 10x faster with zero downtime.",
     rating: 5,
     company: "RetailMax",
   },
@@ -58,8 +58,6 @@ const testimonials = [
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [touchStart, setTouchStart] = useState(0)
-  const [touchEnd, setTouchEnd] = useState(0)
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length)
@@ -69,108 +67,87 @@ export default function Testimonials() {
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
   }
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX)
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX)
-  }
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return
-
-    const distance = touchStart - touchEnd
-    const isLeftSwipe = distance > 50
-    const isRightSwipe = distance < -50
-
-    if (isLeftSwipe) {
-      nextSlide()
-    }
-    if (isRightSwipe) {
-      prevSlide()
-    }
-  }
-
   useEffect(() => {
     const interval = setInterval(nextSlide, 5000)
     return () => clearInterval(interval)
   }, [])
 
+  // Helper to get correct index for circular rotation
+  const getIndex = (index: number) => {
+    return (index + testimonials.length) % testimonials.length
+  }
+
   return (
-    <div className="relative">
-      <div
-        className="overflow-hidden cursor-grab active:cursor-grabbing"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        <div
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="w-full flex-shrink-0 px-4">
-              <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300 mx-auto max-w-2xl">
-                <CardContent className="p-8">
+    <div className="relative w-full max-w-5xl mx-auto perspective-[1200px]">
+      <div className="flex items-center justify-center space-x-4 overflow-hidden">
+        {[currentIndex - 1, currentIndex, currentIndex + 1].map((i, position) => {
+          const testimonial = testimonials[getIndex(i)]
+          const isCenter = position === 1
+
+          return (
+            <div
+              key={i}
+              className={`
+                w-1/3 flex-shrink-0 transition-all duration-700 ease-in-out transform-gpu
+                ${isCenter ? "scale-100 opacity-100 z-10 translate-x-0 rotate-y-0" : "scale-90 opacity-50 z-0"}
+                ${position === 0 ? "-translate-x-6 -rotate-y-10" : ""}
+                ${position === 2 ? "translate-x-6 rotate-y-10" : ""}
+              `}
+            >
+              <Card
+                className={`
+                  relative overflow-hidden transition-all duration-500 mx-auto
+                  ${isCenter ? "hover:scale-105 hover:shadow-2xl" : "pointer-events-none"}
+                `}
+              >
+                <CardContent className="p-6">
                   {/* Quote Icon */}
-                  <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <Quote className="w-16 h-16 text-primary" />
+                  <div className="absolute top-4 right-4 opacity-30">
+                    <Quote className="w-12 h-12 text-primary" />
                   </div>
 
                   {/* Rating Stars */}
-                  <div className="flex justify-center mb-6">
+                  <div className="flex justify-center mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-primary text-primary mx-1" />
+                      <Star key={i} className="w-4 h-4 fill-primary text-primary mx-0.5" />
                     ))}
                   </div>
 
                   {/* Testimonial Content */}
-                  <p className="text-muted-foreground mb-8 italic text-lg text-center leading-relaxed">
+                  <p className="text-muted-foreground mb-4 italic text-center text-base leading-relaxed">
                     "{testimonial.content}"
                   </p>
 
                   {/* Author Info */}
-                  <div className="border-t pt-6 text-center">
-                    <h4 className="font-semibold text-foreground text-xl">{testimonial.name}</h4>
-                    <p className="text-muted-foreground mt-1">{testimonial.role}</p>
-                    <p className="text-primary font-medium mt-1">{testimonial.company}</p>
+                  <div className="border-t pt-4 text-center">
+                    <h4 className="font-semibold text-foreground text-lg">{testimonial.name}</h4>
+                    <p className="text-muted-foreground text-sm">{testimonial.role}</p>
+                    <p className="text-primary font-medium text-sm">{testimonial.company}</p>
                   </div>
                 </CardContent>
               </Card>
             </div>
-          ))}
-        </div>
+          )
+        })}
       </div>
 
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-all duration-200 shadow-lg"
-        aria-label="Previous testimonial"
-      >
-        <ChevronLeft className="w-6 h-6 text-foreground" />
-      </button>
+    {/* Controls */}
+<button
+  onClick={prevSlide}
+  className="absolute -left-12 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-all duration-200 shadow-md"
+  aria-label="Previous testimonial"
+>
+  <ChevronLeft className="w-6 h-6 text-foreground" />
+</button>
 
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-all duration-200 shadow-lg"
-        aria-label="Next testimonial"
-      >
-        <ChevronRight className="w-6 h-6 text-foreground" />
-      </button>
+<button
+  onClick={nextSlide}
+  className="absolute -right-12 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-all duration-200 shadow-md" 
+  aria-label="Next testimonial"
+>
+  <ChevronRight className="w-6 h-6 text-foreground" />
+</button>
 
-      <div className="flex justify-center mt-8 space-x-2">
-        {testimonials.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-200 ${
-              index === currentIndex ? "bg-primary scale-110" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-            }`}
-            aria-label={`Go to testimonial ${index + 1}`}
-          />
-        ))}
-      </div>
     </div>
   )
 }

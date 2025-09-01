@@ -234,22 +234,35 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-            Ready to Transform Your Business?
-          </h2>
-          <p className="text-xl text-primary-foreground/90 mb-8">
-            Let's discuss how our IT solutions can drive your success forward.
-          </p>
-          <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground px-8" asChild>
-            <Link href="/consultation">
-              Schedule a Consultation
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-          </Button>
-        </div>
-      </section>
+
+<section
+  className="relative py-20 bg-primary bg-[url('/footerImage/upfooter.jpg')] bg-cover bg-center bg-no-repeat bg-fixed"
+>
+  {/* Overlay to darken image */}
+  <div className="absolute inset-0 bg-primary/70"></div>
+
+  {/* Content */}
+  <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+      Ready to Transform Your Business?
+    </h2>
+    <p className="text-xl text-primary-foreground/90 mb-8">
+      Let's discuss how our IT solutions can drive your success forward.
+    </p>
+    <Button
+      size="lg"
+      className="bg-accent hover:bg-[#2c2c2c] text-accent-foreground px-8"
+      asChild
+    >
+      <Link href="/consultation">
+        Schedule a Consultation
+        <ArrowRight className="ml-2 w-5 h-5" />
+      </Link>
+    </Button>
+  </div>
+</section>
+
+
     </div>
   )
 }
