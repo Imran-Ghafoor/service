@@ -1,9 +1,48 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Facebook, Twitter, Linkedin, Instagram, Github, Mail, Phone, MapPin } from "lucide-react"
 
 export default function Footer() {
+  const texts = ["TDX", "The DesignerX"] // cycle between these
+  const [currentText, setCurrentText] = useState("")
+  const [textIndex, setTextIndex] = useState(0)
+  const [charIndex, setCharIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  // Typing Effect Logic (same as Navbar)
+  useEffect(() => {
+    const typingSpeed = isDeleting ? 80 : 120
+    const pauseTime = 1500 // pause after word is complete
+
+    let timeout: NodeJS.Timeout
+
+    if (!isDeleting && charIndex < texts[textIndex].length) {
+      timeout = setTimeout(() => {
+        setCurrentText((prev) => prev + texts[textIndex][charIndex])
+        setCharIndex((prev) => prev + 1)
+      }, typingSpeed)
+    } else if (!isDeleting && charIndex === texts[textIndex].length) {
+      timeout = setTimeout(() => {
+        setIsDeleting(true)
+      }, pauseTime)
+    } else if (isDeleting && charIndex > 0) {
+      timeout = setTimeout(() => {
+        setCurrentText((prev) => prev.slice(0, -1))
+        setCharIndex((prev) => prev - 1)
+      }, typingSpeed)
+    } else if (isDeleting && charIndex === 0) {
+      setIsDeleting(false)
+      setTextIndex((prev) => (prev + 1) % texts.length)
+    }
+
+    return () => clearTimeout(timeout)
+  }, [charIndex, isDeleting, textIndex, texts])
+
   return (
     <footer className="relative bg-gradient-to-br from-slate-800 via-zinc-900 to-slate-700 text-white overflow-hidden">
+      {/* Background Shapes */}
       <div className="absolute inset-0 opacity-10">
         <svg
           className="absolute top-10 left-10 w-32 h-32 animate-pulse text-yellow-400"
@@ -35,71 +74,51 @@ export default function Footer() {
         </svg>
       </div>
 
+      {/* Footer Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          {/* Logo + Socials */}
           <div className="flex flex-col items-center lg:items-start space-y-6">
-            <Link href="/" className="flex items-center group relative">
-              <div className="relative inline-block">
-                {/* TDX - Always visible */}
-                <span className="text-3xl font-bold text-black transition-all duration-500 group-hover:opacity-0 group-hover:scale-95">
-                  TDX
-                </span>
-
-                <span className="absolute top-0 left-0 text-2xl font-bold opacity-0 scale-95 transition-all duration-500 group-hover:opacity-100 group-hover:scale-100 whitespace-nowrap">
-                  <span className="text-black">The </span>
-                  <span className="text-white">DesignerX</span>
-                </span>
-              </div>
+            <Link href="/" className="flex items-center">
+              <span
+                className="block text-2xl md:text-3xl font-bold bg-gradient-to-r 
+                  from-[#F6F5E3] via-[#E1C688] to-[#D5BA7F] 
+                  bg-clip-text text-transparent tracking-wide 
+                  whitespace-nowrap"
+                style={{ minWidth: "12ch" }}
+              >
+                {currentText}
+                <span className="animate-pulse">|</span>
+              </span>
             </Link>
 
+            {/* Social Links */}
             <div className="flex space-x-4">
-              <a
-                href="#"
-                className="p-3 bg-slate-700 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-amber-600 rounded-full transition-all duration-300 group shadow-lg hover:shadow-yellow-500/25"
-              >
-                <Facebook className="w-5 h-5 text-slate-300 group-hover:text-white" />
-              </a>
-              <a
-                href="#"
-                className="p-3 bg-slate-700 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-amber-600 rounded-full transition-all duration-300 group shadow-lg hover:shadow-yellow-500/25"
-              >
-                <Twitter className="w-5 h-5 text-slate-300 group-hover:text-white" />
-              </a>
-              <a
-                href="#"
-                className="p-3 bg-slate-700 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-amber-600 rounded-full transition-all duration-300 group shadow-lg hover:shadow-yellow-500/25"
-              >
-                <Linkedin className="w-5 h-5 text-slate-300 group-hover:text-white" />
-              </a>
-              <a
-                href="#"
-                className="p-3 bg-slate-700 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-amber-600 rounded-full transition-all duration-300 group shadow-lg hover:shadow-yellow-500/25"
-              >
-                <Instagram className="w-5 h-5 text-slate-300 group-hover:text-white" />
-              </a>
-              <a
-                href="#"
-                className="p-3 bg-slate-700 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-amber-600 rounded-full transition-all duration-300 group shadow-lg hover:shadow-yellow-500/25"
-              >
-                <Github className="w-5 h-5 text-slate-300 group-hover:text-white" />
-              </a>
+              {[Facebook, Twitter, Linkedin, Instagram, Github].map((Icon, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="p-3 bg-slate-700 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-amber-600 rounded-full transition-all duration-300 group shadow-lg hover:shadow-yellow-500/25"
+                >
+                  <Icon className="w-5 h-5 text-slate-300 group-hover:text-white" />
+                </a>
+              ))}
             </div>
           </div>
 
+          {/* Contact Info */}
           <div className="text-center space-y-6">
             <div className="space-y-4">
               <div className="flex items-center justify-center space-x-3">
                 <MapPin className="w-6 h-6 text-yellow-400" />
                 <span className="text-slate-300">123 Tech Street, Lahore, Pakistan</span>
               </div>
-
               <div className="flex items-center justify-center space-x-3">
                 <Mail className="w-6 h-6 text-yellow-400" />
                 <span className="text-2xl font-bold bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
                   contact@tdx.com
                 </span>
               </div>
-
               <div className="flex items-center justify-center space-x-3">
                 <Phone className="w-6 h-6 text-yellow-400" />
                 <span className="text-slate-300">+92 300 1234567</span>
@@ -107,6 +126,7 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Policies */}
           <div className="flex flex-col items-center lg:items-end space-y-4">
             <div className="space-y-3 text-center lg:text-right">
               <Link
@@ -125,6 +145,7 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Bottom Note */}
         <div className="mt-6 pt-4 border-t border-slate-600 text-center">
           <p className="text-slate-400">© 2024 TDX. All Rights Reserved.</p>
         </div>
