@@ -1,10 +1,10 @@
 "use client"
 
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
-
+import { usePathname } from "next/navigation"
 
 export default function Navbar() {
   const texts = ["TDX", "The DesignerX"] // cycle between these
@@ -14,6 +14,7 @@ export default function Navbar() {
   const [isDeleting, setIsDeleting] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
+  const pathname = usePathname()
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -23,7 +24,7 @@ export default function Navbar() {
     { name: "Contact", href: "/contact" },
   ]
 
-   // ⏳ toggle text every 3 seconds
+  // ⏳ toggle text every 3 seconds
   useEffect(() => {
     const typingSpeed = isDeleting ? 80 : 120
     const pauseTime = 1500 // pause after word is complete
@@ -56,14 +57,12 @@ export default function Navbar() {
     return () => clearTimeout(timeout)
   }, [charIndex, isDeleting, textIndex, texts])
 
-
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-
-        <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <span
               className="block text-2xl md:text-3xl font-bold bg-gradient-to-r 
                 from-[#F6F5E3] via-[#E1C688] to-[#D5BA7F] 
@@ -76,32 +75,42 @@ export default function Navbar() {
             </span>
           </Link>
 
-
-
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium relative group"
-              >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = pathname === item.href
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`relative font-medium transition-colors duration-200 group
+                    ${isActive ? "text-primary" : "text-muted-foreground hover:text-primary"}`}
+                >
+                  {item.name}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300
+                      ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
+                  ></span>
+                </Link>
+              )
+            })}
           </div>
 
           {/* CTA Button */}
           <div className="hidden md:flex">
-            <Button className="font-semibold px-6 hover:bg-[#2c2c2c] "  >
+            <Button className="font-semibold px-6 hover:bg-[#2c2c2c] ">
               <Link href="/consultation">Get Started</Link>
             </Button>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <Button variant="ghost" size="sm" onClick={() => setIsOpen(!isOpen)} className="text-foreground">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-foreground"
+            >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>
           </div>
@@ -111,16 +120,22 @@ export default function Navbar() {
         {isOpen && (
           <div className="md:hidden animate-slide-in-right">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-card rounded-lg mt-2 border border-border">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="block px-3 py-2 text-muted-foreground hover:text-primary hover:bg-muted rounded-md transition-colors duration-200"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive = pathname === item.href
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`block px-3 py-2 rounded-md transition-colors duration-200
+                      ${isActive
+                        ? "bg-muted text-primary"
+                        : "text-muted-foreground hover:text-primary hover:bg-muted"}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )
+              })}
               <div className="px-3 py-2">
                 <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" asChild>
                   <Link href="/consultation">Get Started</Link>

@@ -103,7 +103,7 @@ export default function InteractiveVideoSection() {
               isScrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             } flex flex-col justify-center text-center lg:text-left`}
           >
-            <div className="w-16 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mb-6 mx-auto lg:mx-0" />
+            <div className="w-16 h-1 bg-gradient-to-r from-[#d3af37] to-amber-600 mb-6 mx-auto lg:mx-0" />
             <blockquote className="text-2xl lg:text-3xl font-bold text-white leading-tight mb-6">
               "Success is not just about technology, it's about transforming possibilities into reality."
             </blockquote>
@@ -114,7 +114,7 @@ export default function InteractiveVideoSection() {
             {/* ✅ Only CTA lives here */}
             <Button
               size="lg"
-              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-semibold px-8 self-center lg:self-start"
+              className="bg-gradient-to-r from-[#d3af37] to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-semibold px-8 self-center lg:self-start"
               asChild
             >
               <Link href="/consultation">
@@ -127,7 +127,7 @@ export default function InteractiveVideoSection() {
             <div className="mt-8 grid grid-cols-2 gap-6 max-w-sm mx-auto lg:mx-0">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center">
-                  <span className="text-amber-400 font-bold text-lg">500+</span>
+                  <span className="text-[#d3af37] font-bold text-lg">500+</span>
                 </div>
                 <div>
                   <p className="font-semibold text-white">Projects</p>
@@ -136,7 +136,7 @@ export default function InteractiveVideoSection() {
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center">
-                  <span className="text-amber-400 font-bold text-lg">98%</span>
+                  <span className="text-[#d3af37] font-bold text-lg">98%</span>
                 </div>
                 <div>
                   <p className="font-semibold text-white">Satisfaction</p>

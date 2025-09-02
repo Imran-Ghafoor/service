@@ -236,7 +236,7 @@ export default function HomePage() {
       {/* CTA Section */}
 
 <section
-  className="relative py-20 bg-primary bg-[url('/footerImage/upfooter.jpg')] bg-cover bg-center bg-no-repeat bg-fixed"
+  className="relative py-20 bg-primary bg-[url('/footerImage/upfooter.jpg')] bg-cover bg-center bg-no-repeat"
 >
   {/* Overlay to darken image */}
   <div className="absolute inset-0 bg-primary/70"></div>

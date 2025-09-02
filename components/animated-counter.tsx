@@ -1,5 +1,6 @@
 "use client"
 
+import { View } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
 interface AnimatedCounterProps {
@@ -14,7 +15,7 @@ export function AnimatedCounter({ end, duration = 2000, suffix = "", className =
   const [isVisible, setIsVisible] = useState(false)
   const counterRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useEffect(() => {  
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

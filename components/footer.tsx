@@ -96,10 +96,11 @@ export default function Footer() {
             <div className="flex space-x-4">
               {[Facebook, Twitter, Linkedin, Instagram, Github].map((Icon, i) => (
                 <a
-                  key={i}
-                  href="#"
-                  className="p-3 bg-slate-700 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-amber-600 rounded-full transition-all duration-300 group shadow-lg hover:shadow-yellow-500/25"
-                >
+  key={i}
+  href="#"
+  className="p-3 bg-slate-700 hover:bg-gradient-to-r hover:from-[#d3af37] hover:to-amber-600 
+             rounded-full transition-all duration-300 group shadow-lg hover:shadow-yellow-500/25"
+>
                   <Icon className="w-5 h-5 text-slate-300 group-hover:text-white" />
                 </a>
               ))}
@@ -110,17 +111,17 @@ export default function Footer() {
           <div className="text-center space-y-6">
             <div className="space-y-4">
               <div className="flex items-center justify-center space-x-3">
-                <MapPin className="w-6 h-6 text-yellow-400" />
+                <MapPin className="w-6 h-6 text-[#d3af37]" />
                 <span className="text-slate-300">123 Tech Street, Lahore, Pakistan</span>
               </div>
               <div className="flex items-center justify-center space-x-3">
-                <Mail className="w-6 h-6 text-yellow-400" />
-                <span className="text-2xl font-bold bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
-                  contact@tdx.com
+                <Mail className="w-6 h-6 text-[#d3af37]" />
+                <span className="text-2xl font-bold bg-gradient-to-r from-[#ffffff] to-[#d3af37] bg-clip-text ">
+                  contact@thedesignerx.com
                 </span>
               </div>
               <div className="flex items-center justify-center space-x-3">
-                <Phone className="w-6 h-6 text-yellow-400" />
+                <Phone className="w-6 h-6 text-[#d3af37]" />
                 <span className="text-slate-300">+92 300 1234567</span>
               </div>
             </div>
@@ -131,13 +132,13 @@ export default function Footer() {
             <div className="space-y-3 text-center lg:text-right">
               <Link
                 href="/terms"
-                className="block text-slate-300 hover:bg-gradient-to-r hover:from-white hover:to-yellow-300 hover:bg-clip-text hover:text-transparent transition-all duration-300 text-lg font-medium"
+                className="block text-slate-300 hover:bg-gradient-to-r hover:from-white hover:to-[#d3af37] hover:bg-clip-text hover:text-transparent transition-all duration-300 text-lg font-medium"
               >
                 Terms and Conditions
               </Link>
               <Link
                 href="/privacy"
-                className="block text-slate-300 hover:bg-gradient-to-r hover:from-white hover:to-yellow-300 hover:bg-clip-text hover:text-transparent transition-all duration-300 text-lg font-medium"
+                className="block text-slate-300 hover:bg-gradient-to-r hover:from-white hover:to-[#d3af37] hover:bg-clip-text hover:text-transparent transition-all duration-300 text-lg font-medium"
               >
                 Privacy Policy
               </Link>
@@ -147,7 +148,7 @@ export default function Footer() {
 
         {/* Bottom Note */}
         <div className="mt-6 pt-4 border-t border-slate-600 text-center">
-          <p className="text-slate-400">© 2024 TDX. All Rights Reserved.</p>
+          <p className="text-slate-400">© 2025 TDX. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

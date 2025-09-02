@@ -6,6 +6,7 @@ import "./globals.css"
 import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
 import { ThemeProvider } from "next-themes"
+import SplashScreen from "@/components/SplashScreen"
 
 export const metadata: Metadata = {
   title: "The DesignerX",
@@ -22,9 +23,11 @@ export default function RootLayout({
     <html lang="en" className="antialiased">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <SplashScreen>
           <Navbar />
           {children}
           <Footer />
+          </SplashScreen>
         </ThemeProvider>
       </body>
     </html>
