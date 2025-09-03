@@ -19,7 +19,7 @@ import InteractiveVideoSection from "@/components/interactive-video-section"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-muted py-20 lg:py-32">
         <EnhancedFloatingElements />
@@ -47,7 +47,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="mt-16 flex justify-center">
+          <div className="mt-16 flex justify-center overflow-hidden">
             <div className="relative">
               <ModernCodeVector className="w-40 h-40 text-primary" />
               <div className="absolute -top-6 -right-6">
@@ -61,9 +61,9 @@ export default function HomePage() {
         </div>
 
         {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full animate-float"></div>
+        <div className="absolute top-20 left-5 w-20 h-20 bg-primary/10 rounded-full animate-float"></div>
         <div
-          className="absolute top-40 right-20 w-16 h-16 bg-accent/10 rounded-full animate-float"
+          className="absolute top-40 right-5 w-16 h-16 bg-accent/10 rounded-full animate-float"
           style={{ animationDelay: "1s" }}
         ></div>
         <div
@@ -73,7 +73,7 @@ export default function HomePage() {
       </section>
 
       {/* Services Preview */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-muted/30 overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Core Services</h2>
@@ -128,7 +128,7 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Us section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-background overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Why Choose Us?</h2>
@@ -186,7 +186,7 @@ export default function HomePage() {
       </section>
 
       {/* Technology We Use section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-muted/30 overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Technologies We Use</h2>
@@ -204,7 +204,7 @@ export default function HomePage() {
       </section>
 
       {/* Leadership Members section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-muted/30 overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Leadership Members!</h2>
@@ -220,7 +220,7 @@ export default function HomePage() {
       <InteractiveVideoSection />
 
       {/* Testimonials section */}
-      <section className="py-20 bg-background relative">
+      <section className="py-20 bg-background relative overflow-x-hidden">
         <TestimonialVectors />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -234,36 +234,32 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
+      <section
+        className="relative py-20 bg-primary bg-[url('/footerImage/upfooter.jpg')] bg-cover bg-center bg-no-repeat overflow-hidden"
+      >
+        {/* Overlay with blur + darken */}
+        <div className="absolute inset-0 bg-primary/70 backdrop-blur-sm"></div>
 
-<section
-  className="relative py-20 bg-primary bg-[url('/footerImage/upfooter.jpg')] bg-cover bg-center bg-no-repeat"
->
-  {/* Overlay with blur + darken */}
-  <div className="absolute inset-0 bg-primary/70 backdrop-blur-sm"></div>
-
-  {/* Content */}
-  <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-    <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-      Ready to Transform Your Business?
-    </h2>
-    <p className="text-xl text-primary-foreground/90 mb-8">
-      Let's discuss how our IT solutions can drive your success forward.
-    </p>
-    <Button
-      size="lg"
-      className="bg-accent hover:bg-[#2c2c2c] text-accent-foreground px-8"
-      asChild
-    >
-      <Link href="/consultation">
-        Schedule a Consultation
-        <ArrowRight className="ml-2 w-5 h-5" />
-      </Link>
-    </Button>
-  </div>
-</section>
-
-
-
+        {/* Content */}
+        <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+            Ready to Transform Your Business?
+          </h2>
+          <p className="text-xl text-primary-foreground/90 mb-8">
+            Let's discuss how our IT solutions can drive your success forward.
+          </p>
+          <Button
+            size="lg"
+            className="bg-accent hover:bg-[#2c2c2c] text-accent-foreground px-8"
+            asChild
+          >
+            <Link href="/consultation">
+              Schedule a Consultation
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </Button>
+        </div>
+      </section>
     </div>
   )
 }

@@ -136,21 +136,27 @@ export default function Testimonials() {
       </div>
 
       {/* Controls */}
-      <button
-        onClick={prevSlide}
-        className="absolute -left-12 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-all duration-200 shadow-md"
-        aria-label="Previous testimonial"
-      >
-        <ChevronLeft className="w-6 h-6 text-foreground" />
-      </button>
+      {/* Controls - Only visible on desktop */}
+<button
+  onClick={prevSlide}
+  className="hidden sm:flex absolute -left-12 top-1/2 -translate-y-1/2 
+             bg-background/80 backdrop-blur-sm border rounded-full p-3 
+             hover:bg-background transition-all duration-200 shadow-md"
+  aria-label="Previous testimonial"
+>
+  <ChevronLeft className="w-6 h-6 text-foreground" />
+</button>
 
-      <button
-        onClick={nextSlide}
-        className="absolute -right-12 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-all duration-200 shadow-md"
-        aria-label="Next testimonial"
-      >
-        <ChevronRight className="w-6 h-6 text-foreground" />
-      </button>
+<button
+  onClick={nextSlide}
+  className="hidden sm:flex absolute -right-12 top-1/2 -translate-y-1/2 
+             bg-background/80 backdrop-blur-sm border rounded-full p-3 
+             hover:bg-background transition-all duration-200 shadow-md"
+  aria-label="Next testimonial"
+>
+  <ChevronRight className="w-6 h-6 text-foreground" />
+</button>
+
     </div>
   )
 }
