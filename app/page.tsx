@@ -28,14 +28,14 @@ export default function HomePage() {
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 text-balance">
               Transform Your Business with
-              <span className="text-primary"> Cutting-Edge</span> IT Solutions
+              <span className="text-[#d3af37]"> Cutting-Edge</span> IT Solutions
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto text-pretty">
               We deliver innovative technology solutions that drive growth, enhance security, and streamline operations
               for businesses of all sizes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8" asChild>
+              <Button size="lg" className="bg-[#d3af37] hover:bg-primary/90 text-primary-foreground px-8" asChild>
                 <Link href="/consultation">
                   Start Your Project
                   <ArrowRight className="ml-2 w-5 h-5" />
@@ -238,8 +238,8 @@ export default function HomePage() {
 <section
   className="relative py-20 bg-primary bg-[url('/footerImage/upfooter.jpg')] bg-cover bg-center bg-no-repeat"
 >
-  {/* Overlay to darken image */}
-  <div className="absolute inset-0 bg-primary/70"></div>
+  {/* Overlay with blur + darken */}
+  <div className="absolute inset-0 bg-primary/70 backdrop-blur-sm"></div>
 
   {/* Content */}
   <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
@@ -261,6 +261,7 @@ export default function HomePage() {
     </Button>
   </div>
 </section>
+
 
 
     </div>

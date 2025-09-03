@@ -240,18 +240,27 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Ready to Work Together?</h2>
-          <p className="text-xl text-primary-foreground/90 mb-8">
-            Let's discuss how our expertise can help transform your business.
-          </p>
-          <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground px-8">
-            Get in Touch
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-        </div>
-      </section>
+    <section className="relative py-20 bg-[url('/footerImage/about1.jpg')] bg-cover bg-center bg-no-repeat bg-scroll">
+  {/* Gradient Overlay (top se golden, neeche halka transparent) */}
+  <div className="absolute inset-0 bg-gradient-to-b from-[#d3af37]/70 to-white/30"></div>
+
+  {/* Content */}
+  <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+      Ready to Work Together?
+    </h2>
+    <p className="text-xl text-white mb-8">
+      Let's discuss how our expertise can help transform your business.
+    </p>
+    <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground px-8">
+      Get in Touch
+      <ArrowRight className="ml-2 w-5 h-5" />
+    </Button>
+  </div>
+</section>
+
+
+
     </div>
   )
 }

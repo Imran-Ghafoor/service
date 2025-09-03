@@ -1,8 +1,11 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AnimatedNetwork, AnimatedCode, AnimatedCloud, AnimatedShield } from "@/components/animated-icons"
-import { ExternalLink, Calendar, Users, ArrowRight } from "lucide-react"
+import { Calendar, Users, ArrowRight, ExternalLink } from "lucide-react"
 import Link from "next/link"
 
 export default function ProjectsPage() {
@@ -54,21 +57,24 @@ export default function ProjectsPage() {
   ]
 
   const categories = ["All Projects", "Cloud Solutions", "Security", "Custom Development", "Infrastructure"]
+  const [activeCategory, setActiveCategory] = useState("All Projects")
+
+  const filteredProjects =
+    activeCategory === "All Projects"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory)
 
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-muted py-20 lg:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 text-balance">
-              Our <span className="text-primary">Success Stories</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto text-pretty">
-              Explore our portfolio of successful IT transformations and see how we've helped businesses achieve their
-              goals.
-            </p>
-          </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
+            Our <span className="text-primary">Success Stories</span>
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+            Explore our portfolio of successful IT transformations and see how we've helped businesses achieve their goals.
+          </p>
         </div>
 
         {/* Floating Elements */}
@@ -82,12 +88,17 @@ export default function ProjectsPage() {
       {/* Filter Section */}
       <section className="py-12 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             {categories.map((category) => (
               <Button
                 key={category}
-                variant={category === "All Projects" ? "default" : "outline"}
-                className={category === "All Projects" ? "bg-primary text-primary-foreground" : ""}
+                onClick={() => setActiveCategory(category)}
+                variant={activeCategory === category ? "default" : "outline"}
+                className={
+                  activeCategory === category
+                    ? "bg-primary text-primary-foreground"
+                    : "hover:bg-primary/10"
+                }
               >
                 {category}
               </Button>
@@ -99,66 +110,50 @@ export default function ProjectsPage() {
       {/* Projects Grid */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <CardHeader className="pb-4">
-                  <div className="flex items-start gap-4">
-                    <div className="group-hover:animate-pulse-glow transition-all duration-300">{project.icon}</div>
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between mb-2">
-                        <CardTitle className="text-xl font-bold text-foreground">{project.title}</CardTitle>
-                        <Badge variant="secondary">{project.category}</Badge>
-                      </div>
-                      <p className="text-primary font-medium mb-2">{project.client}</p>
-                      <p className="text-muted-foreground">{project.description}</p>
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {filteredProjects.map((project, index) => (
+              <Card
+                key={index}
+                className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              >
+                <CardHeader className="flex flex-row items-center gap-4">
+                  {project.icon}
+                  <div>
+                    <CardTitle className="text-xl font-bold">{project.title}</CardTitle>
+                    <p className="text-sm text-muted-foreground">{project.client}</p>
                   </div>
                 </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="space-y-4">
-                    <div className="flex gap-6 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {project.duration}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Users className="w-4 h-4" />
-                        {project.team}
-                      </div>
-                    </div>
+                <CardContent className="space-y-4">
+                  <p className="text-muted-foreground">{project.description}</p>
 
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-2">Technologies Used:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech, idx) => (
-                          <Badge key={idx} variant="outline" className="text-xs">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-2">Key Results:</h4>
-                      <ul className="space-y-1">
-                        {project.results.map((result, idx) => (
-                          <li key={idx} className="text-sm text-muted-foreground flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                            {result}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <Button
-                      variant="outline"
-                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors bg-transparent"
-                    >
-                      View Case Study
-                      <ExternalLink className="ml-2 w-4 h-4" />
-                    </Button>
+                  <div className="flex items-center gap-6 text-sm">
+                    <span className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-primary" /> {project.duration}
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <Users className="w-4 h-4 text-primary" /> {project.team}
+                    </span>
                   </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, i) => (
+                      <Badge key={i} variant="secondary">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    {project.results.map((result, i) => (
+                      <li key={i}>{result}</li>
+                    ))}
+                  </ul>
+
+                  <Button variant="link" asChild className="p-0">
+                    <Link href="/case-study">
+                      View Case Study <ExternalLink className="ml-1 w-4 h-4" />
+                    </Link>
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -167,15 +162,19 @@ export default function ProjectsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary">
+      <section className="py-20 bg-muted/40">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
             Ready to Start Your Success Story?
           </h2>
-          <p className="text-xl text-primary-foreground/90 mb-8">
+          <p className="text-lg md:text-xl mb-8 text-muted-foreground">
             Let's discuss how we can help you achieve similar results for your business.
           </p>
-          <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground px-8" asChild>
+          <Button
+            size="lg"
+            className="hover:bg-transparent bg-[#d3af37] px-8"
+            asChild
+          >
             <Link href="/consultation">
               Start Your Project
               <ArrowRight className="ml-2 w-5 h-5" />

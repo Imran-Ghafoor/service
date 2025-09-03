@@ -236,29 +236,33 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-            Ready to Elevate Your IT Infrastructure?
-          </h2>
-          <p className="text-xl text-primary-foreground/90 mb-8">
-            Let's discuss how our services can transform your business operations and drive growth.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground px-8">
-              Get Free Consultation
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary px-8"
-            >
-              View Case Studies
-            </Button>
-          </div>
-        </div>
-      </section>
+     <section className="relative py-20 bg-primary bg-[url('/footerImage/upfooter.jpg')] bg-cover bg-center bg-no-repeat">
+  {/* Blur overlay */}
+  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+  <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+      Ready to Elevate Your IT Infrastructure?
+    </h2>
+    <p className="text-xl text-primary-foreground/90 mb-8">
+      Let's discuss how our services can transform your business operations and drive growth.
+    </p>
+    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground px-8">
+        Get Free Consultation
+        <ArrowRight className="ml-2 w-5 h-5" />
+      </Button>
+      <Button
+        size="lg"
+        variant="outline"
+        className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary px-8"
+      >
+        View Case Studies
+      </Button>
+    </div>
+  </div>
+</section>
+
     </div>
   )
 }

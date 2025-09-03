@@ -114,7 +114,7 @@ export default function InteractiveVideoSection() {
             {/* ✅ Only CTA lives here */}
             <Button
               size="lg"
-              className="bg-gradient-to-r from-[#d3af37] to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-semibold px-8 self-center lg:self-start"
+              className="bg-gradient-to-r from-[#d3af37] to-white hover:from-white hover:to-[#d3af37] text-black font-semibold px-8 self-center lg:self-start"
               asChild
             >
               <Link href="/consultation">

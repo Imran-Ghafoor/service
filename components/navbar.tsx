@@ -98,7 +98,7 @@ export default function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden md:flex">
-            <Button className="font-semibold px-6 hover:bg-[#2c2c2c] ">
+            <Button className="font-semibold px-6 hover:bg-primary/90 ">
               <Link href="/consultation">Get Started</Link>
             </Button>
           </div>
