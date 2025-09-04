@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: "The DesignerX",
   description: "Design & Describe the Solutions",
   generator: "The DesignerX",
+  icons:{ 
+    icon: "/favicon/favicon-16x16.png"
+  }
 }
 
 export default function RootLayout({

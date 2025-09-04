@@ -115,7 +115,7 @@ export default function AboutPage() {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Our Mission</h2>
               <p className="text-lg text-muted-foreground mb-6">
-                At TechFlow, we believe technology should empower businesses, not complicate them. Our mission is to
+                At TDX, we believe technology should empower businesses, not complicate them. Our mission is to
                 bridge the gap between complex IT solutions and real business value.
               </p>
               <p className="text-lg text-muted-foreground mb-8">

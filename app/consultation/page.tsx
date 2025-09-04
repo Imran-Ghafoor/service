@@ -375,7 +375,7 @@ export default function ConsultationPage() {
                   <div className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-muted/50">
                     <RadioGroupItem value="medium" id="medium" />
                     <Label htmlFor="medium" className="flex items-center gap-2 cursor-pointer">
-                      <Clock className="w-4 h-4 text-yellow-500" />
+                      <Clock className="w-4 h-4 text-[#d3af37]" />
                       Medium - Would like to start within 2-3 months
                     </Label>
                   </div>
@@ -508,20 +508,21 @@ export default function ConsultationPage() {
           </div>
 
           {/* Progress Bar */}
-          <div className="mb-8">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-muted-foreground">
-                Step {currentStep} of {totalSteps}
-              </span>
-              <span className="text-sm font-medium text-primary">{Math.round(progress)}% Complete</span>
-            </div>
-            <div className="w-full bg-muted rounded-full h-2">
-              <div
-                className="bg-primary h-2 rounded-full transition-all duration-500 animate-progress-fill"
-                style={{ "--progress-width": `${progress}%` } as React.CSSProperties}
-              ></div>
-            </div>
-          </div>
+<div className="mb-8">
+  <div className="flex justify-between items-center mb-2">
+    <span className="text-sm font-medium text-muted-foreground">
+      Step {currentStep} of {totalSteps}
+    </span>
+    <span className="text-sm font-medium text-primary">{Math.round(progress)}% Complete</span>
+  </div>
+  <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
+    <div
+      className="bg-primary h-2 rounded-full transition-all duration-700 ease-in-out"
+      style={{ width: `${progress}%` }}
+    />
+  </div>
+</div>
+
         </div>
 
         {/* Floating Elements */}
@@ -575,7 +576,7 @@ export default function ConsultationPage() {
       <section className="py-16 bg-muted/30">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Why Choose TechFlow?</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Why Choose TDX?</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
